@@ -1,0 +1,17 @@
+- name: Playbook para reiniciar Hub
+  hosts: all
+  tasks:
+    - name: Stop a service
+      win_service:
+        name: Traditum.Hub.WinService
+        state: stopped
+
+    - name: Start a service
+      win_service:
+        name: Traditum.Hub.WinService
+        state: started
+      ignore_errors: yes
+      register: result
+
+    - debug:
+        var: result
